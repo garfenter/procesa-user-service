@@ -3,6 +3,7 @@ package com.procesa.user.service.service.web;
 import com.procesa.user.service.domain.User;
 import com.procesa.user.service.domain.UserRepository;
 import com.procesa.user.service.service.UserService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,6 +44,11 @@ public class UserController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public User saveUser(@RequestBody User user) {
         return userService.createUser(user);
+    }
+    
+    @RequestMapping(value = "/name/{user}", method = RequestMethod.GET)
+    public List<User> findUserByName( @PathVariable String user) {
+        return userRepository.findByName(user);
     }
 
 }
